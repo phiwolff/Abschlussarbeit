@@ -1,0 +1,66 @@
+
+# if True processing_settings is relevant/executed; if False then post_processing_settings
+processing: True
+
+
+
+processing_settings:
+
+    opt:
+        # cuts boundingbox around all geos; if False then cuts every single geo at it's biggest Polygon
+        # this setting is important for geos which can't be assigned to one root (all enclosing Polygon)
+        # e.g. plane which has hills and valleys which have wide margins betwenn each other
+        out_cut_bb: True
+        cut_out_distance: 2
+        cut_out_power: 100
+        cut_out_speed: 100
+        # reduces change between pull and blow mode; if False reduces distance laser has to move
+        smallest_distance: True
+
+    laser_settings:
+        # mm/minute
+        speed: 50
+        power: 50
+        sigma: 1
+        dt: 0.01
+
+    simulation_settings:
+        
+        use_cuda: True
+        factor_temp_from_energie: 20
+        # func f(x) = exp(e-threshold_speed_increase) + speed
+        threshold_speed_increase: 200
+
+        kernel_width: 4
+        conv_kernel: [1.,  2.,   1., 
+                      2.,  4.,   2., 
+                      1.,  2.,   1.]
+        
+        timesteps_per_frame: 2
+
+
+    #simulate_heat_for_speed_correction: True
+
+    export_settings:
+        make_svg_opt: True
+
+
+    #ambient_temperature: 22
+    #cool_down_matrix_apply_after_number_of_points: 1
+    # steps in which meshgrid is created
+    dx: 0.2
+    #cool_down_exponent_value: -5
+
+
+#post_processing_settings:
+#    simulate_heat:  True
+
+
+    
+
+
+
+
+
+
+
